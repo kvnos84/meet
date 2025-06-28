@@ -149,3 +149,6 @@ Scenario: Charts update when events change
   Then the charts should update to reflect the new event data
 
 ```
+
+- **Live App:** https://meet-plum-sigma.vercel.app
+  https://github.com/kvnos84/meet
