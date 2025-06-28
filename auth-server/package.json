@@ -11,5 +11,11 @@
   "description": "",
   "dependencies": {
     "googleapis": "^150.0.1"
+  },
+  "jest": {
+  "moduleNameMapper": {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy"
   }
+}
+
 }
