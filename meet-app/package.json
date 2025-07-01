@@ -11,6 +11,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "atatus-nodejs": "^3.2.3",
+    "atatus-spa": "^4.6.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
