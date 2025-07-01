@@ -14,7 +14,8 @@
     "atatus-nodejs": "^3.2.3",
     "atatus-spa": "^4.6.4",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "vite": "^6.3.5"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.27.2",
@@ -35,7 +36,6 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.0.3",
     "jest-cucumber": "^4.5.0",
-    "jest-environment-jsdom": "^30.0.2",
-    "vite": "^6.3.5"
+    "jest-environment-jsdom": "^30.0.2"
   }
 }
