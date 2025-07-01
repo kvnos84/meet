@@ -4,7 +4,7 @@ import NumberOfEvents from './NumberOfEvents';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import mockData from '../mock-data';
-import { InfoAlert, ErrorAlert } from '../Alert'; // ✅ Adjusted import path if Alert.js is in /src
+import { InfoAlert, ErrorAlert, WarningAlert } from '../Alert';
 
 function App() {
   const [numberOfEvents, setNumberOfEvents] = useState(32);
@@ -14,6 +14,7 @@ function App() {
   // ✅ Alert text states
   const [infoAlertText, setInfoAlertText] = useState('');
   const [errorAlertText, setErrorAlertText] = useState('');
+  const [warningAlertText, setWarningAlertText] = useState(''); // ✅ NEW
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -23,6 +24,13 @@ function App() {
       }
       setEvents(data.slice(0, numberOfEvents));
     };
+
+    // ✅ Check online status and show warning alert if offline
+    if (navigator.onLine) {
+      setWarningAlertText('');
+    } else {
+      setWarningAlertText('You are offline: displaying cached events.');
+    }
 
     fetchEvents();
   }, [currentCity, numberOfEvents]);
@@ -34,17 +42,16 @@ function App() {
       {/* ✅ Alert container */}
       <div className="alerts-container">
         <InfoAlert text={infoAlertText} />
-        {errorAlertText.length > 0 && <ErrorAlert text={errorAlertText} />}
+        {errorAlertText && <ErrorAlert text={errorAlertText} />}
+        {warningAlertText && <WarningAlert text={warningAlertText} />}
       </div>
 
-      {/* ✅ Pass alert setter to CitySearch */}
       <CitySearch
         onCitySelect={setCurrentCity}
         allCities={allCities}
         setInfoAlert={setInfoAlertText}
       />
 
-      {/* ✅ Pass alert setter to NumberOfEvents */}
       <NumberOfEvents
         setNumberOfEvents={setNumberOfEvents}
         setErrorAlertText={setErrorAlertText}
