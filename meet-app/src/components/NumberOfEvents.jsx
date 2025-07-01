@@ -4,10 +4,23 @@ class NumberOfEvents extends Component {
   state = { numberOfEvents: 32 };
 
   handleInputChanged = (e) => {
-    const value = parseInt(e.target.value) || 0;
-    this.setState({ numberOfEvents: value });
-    if (this.props.setNumberOfEvents) {
-      this.props.setNumberOfEvents(value);
+    const value = e.target.value;
+
+    if (isNaN(value) || value <= 0) {
+      if (this.props.setErrorAlertText) {
+        this.props.setErrorAlertText('Please enter a valid number of events.');
+      }
+    } else {
+      const parsedValue = parseInt(value);
+      this.setState({ numberOfEvents: parsedValue });
+
+      if (this.props.setNumberOfEvents) {
+        this.props.setNumberOfEvents(parsedValue);
+      }
+
+      if (this.props.setErrorAlertText) {
+        this.props.setErrorAlertText('');
+      }
     }
   };
 

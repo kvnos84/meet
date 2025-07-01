@@ -1,26 +1,30 @@
-// src/components/CitySearch.jsx
 import React, { useState } from 'react';
 
-const CitySearch = ({ onCitySelect, allCities }) => {
+const CitySearch = ({ onCitySelect, allLocations, setInfoAlert }) => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
   const handleInputChanged = (e) => {
     const value = e.target.value;
     setQuery(value);
-    const filtered = allCities.filter((city) =>
+
+    const filtered = allLocations.filter((city) =>
       city.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestions(filtered);
+
+    if (filtered.length === 0) {
+      setInfoAlert && setInfoAlert('City not found.');
+    } else {
+      setInfoAlert && setInfoAlert('');
+    }
   };
 
   const handleItemClicked = (city) => {
     setQuery(city);
     setSuggestions([]);
-    onCitySelect(city); // <-- triggers event filtering in App.jsx
+    onCitySelect(city);
   };
-
-  console.log("CitySearch is rendering", allCities); // <-- temporary debug
 
   return (
     <div className="city-search">

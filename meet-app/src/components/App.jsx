@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import NumberOfEvents from './NumberOfEvents';
 import EventList from './EventList';
-import CitySearch from './CitySearch'; // ✅ NEW
-import mockData from '../mock-data'; // Replace with getEvents later if needed
+import CitySearch from './CitySearch';
+import mockData from '../mock-data';
+import { InfoAlert, ErrorAlert } from '../Alert'; // ✅ Adjusted import path if Alert.js is in /src
 
 function App() {
   const [numberOfEvents, setNumberOfEvents] = useState(32);
   const [events, setEvents] = useState([]);
-  const [currentCity, setCurrentCity] = useState('all'); // ✅ NEW
+  const [currentCity, setCurrentCity] = useState('all');
+
+  // ✅ Alert text states
+  const [infoAlertText, setInfoAlertText] = useState('');
+  const [errorAlertText, setErrorAlertText] = useState('');
 
   useEffect(() => {
     const fetchEvents = async () => {
-      let data = mockData; // Replace with real API later
+      let data = mockData;
       if (currentCity !== 'all') {
         data = data.filter(event => event.location === currentCity);
       }
@@ -20,14 +25,31 @@ function App() {
     };
 
     fetchEvents();
-  }, [currentCity, numberOfEvents]); // ✅ update for city AND count
+  }, [currentCity, numberOfEvents]);
 
   const allCities = [...new Set(mockData.map(event => event.location))];
 
   return (
     <div>
-      <CitySearch onCitySelect={setCurrentCity} allCities={allCities} />
-      <NumberOfEvents setNumberOfEvents={setNumberOfEvents} />
+      {/* ✅ Alert container */}
+      <div className="alerts-container">
+        <InfoAlert text={infoAlertText} />
+        {errorAlertText.length > 0 && <ErrorAlert text={errorAlertText} />}
+      </div>
+
+      {/* ✅ Pass alert setter to CitySearch */}
+      <CitySearch
+        onCitySelect={setCurrentCity}
+        allCities={allCities}
+        setInfoAlert={setInfoAlertText}
+      />
+
+      {/* ✅ Pass alert setter to NumberOfEvents */}
+      <NumberOfEvents
+        setNumberOfEvents={setNumberOfEvents}
+        setErrorAlertText={setErrorAlertText}
+      />
+
       <EventList events={events} />
     </div>
   );

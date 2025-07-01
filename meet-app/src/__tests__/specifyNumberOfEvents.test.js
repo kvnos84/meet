@@ -2,7 +2,7 @@ import { loadFeature, defineFeature } from 'jest-cucumber';
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from '../App';
+import App from '../components/App';
 
 const feature = loadFeature('src/features/specifyNumberOfEvents.feature');
 
