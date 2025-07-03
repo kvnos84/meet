@@ -1,4 +1,4 @@
-// src/Alert.js
+// src/Alert.jsx
 import React, { Component } from 'react';
 
 class Alert extends Component {
@@ -34,4 +34,10 @@ class ErrorAlert extends Alert {
   }
 }
 
-export { InfoAlert, ErrorAlert };
+class WarningAlert extends Alert {
+  getStyle() {
+    return { ...super.getStyle(), color: 'orange' };
+  }
+}
+
+export { InfoAlert, ErrorAlert, WarningAlert };
