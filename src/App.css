@@ -1,0 +1,125 @@
+/* Global base styles */
+body {
+  background-color: #ffffff;
+  color: #000000;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default list styles */
+ul, li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* General form control styling */
+input,
+button {
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.75rem;
+  margin: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Specific text input style */
+input[type="text"] {
+  background-color: #ffffff;
+  color: #000000;
+  width: 250px;
+}
+
+/* Button appearance */
+button {
+  background-color: #038820;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #026a19;
+}
+
+/* App container */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* App header */
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* Container for search input and button */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive chart layout */
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Styling for each chart card */
+.charts-container > * {
+  flex: 1 1 100%;
+  min-width: 0;
+  height: auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* Optional app-level wrapper */
+.App {
+  padding: 2rem;
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+}
+
+/* Hide demo/Vite boilerplate styles */
+.card,
+.logo,
+.logo:hover,
+.logo.react:hover,
+.read-the-docs {
+  display: none;
+}
+
+/* Animation from default template (disabled by default) */
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
